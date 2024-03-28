@@ -1,21 +1,19 @@
 /*
- *  VirtualKeypad-Blynk 1.4 (esp8266)
+ *  VirtualKeypad-Blynk 1.5 (esp8266)
  *
- *  Provides a virtual keypad interface for the free Blynk legacy (https://www.blynk.cc) app on iOS and Android, similar
- *  to a physical DSC LED keypad (the newer Blynk.Cloud app is not currently supported):
+ *  Provides a virtual keypad interface for the Blynk legacy app (https://www.blynk.io) on iOS and Android, similar to
+ *  a physical DSC LED keypad. The legacy app has been removed from the Apple and Google Play stores and replaced by
+ *  Blynk IoT, which is not currently supported. For iOS, you can install the "Blynk 0.1 (legacy)" app if it was previously
+ *  downloaded with your account. For Android, you can sideload the app from third-party repositories:
  *
- *    iOS: https://apps.apple.com/us/app/blynk-0-1-legacy/id808760481
- *    Android: https://play.google.com/store/apps/details?id=cc.blynk&hl=en&gl=US
- *
- *  Installing Blynk as a local server (https://github.com/blynkkk/blynk-server) is recommended to keep control of the
- *  security system internal to your network.  This also lets you use as many widgets as needed for free - local
- *  servers can setup users with any amount of Blynk Energy.
+ *    Android: https://www.apkmirror.com/apk/blynk-inc/blynk-legacy/
  *
  *  Note that while the Blynk legacy app has an LCD to display the partition status, the sketch currently does
  *  not emulate the menu navigation features of the DSC LCD keypads (PK5500, etc).
  *
  *  Usage:
- *    1. Scan one of the following QR codes from within the Blynk legacy app for an example keypad layout - as QR codes
+ *    1. Install the Blynk legacy server and connect to the server from the app: https://github.com/Peterkn2001/blynk-server
+ *    2. Scan one of the following QR codes from within the Blynk legacy app for an example keypad layout - as QR codes
  *       can contain a limited amount of objects, only the 8 and 16-zone template includes PGM outputs 1-8.  Use
  *       cloning within the Blynk app to add up to 64 zones and up to 14 PGM outputs.  Some Android devices have
  *       issues reading these QR codes and may need to be used with a different monitor/device.
@@ -24,11 +22,14 @@
  *      32 zones: https://user-images.githubusercontent.com/12835671/103719459-af4de480-4f8e-11eb-8e4a-7172961e2d29.png
  *      8 zones with event log: https://user-images.githubusercontent.com/12835671/103719518-cc82b300-4f8e-11eb-8b2a-97299e7be3a2.png
  *
- *    2. Navigate to Project Settings > Devices > DSC Keybus Interface > DSC KeybusInterface.
- *    3. Select "Refresh" to generate a new auth token.
- *    4. Go back to Project Settings, copy the auth token, and paste it in an email or message to yourself.
- *    5. Add the auth token to the sketch below.
- *    6. Upload the sketch.
+ *    3. Navigate to Project Settings > Devices > DSC Keybus Interface > DSC KeybusInterface.
+ *    4. Select "Refresh" to generate a new auth token.
+ *    5. Go back to Project Settings, copy the auth token, and paste it in an email or message to yourself.
+ *    6. Install Blynk library 0.6.1 from the Arduino IDE/PlatformIO library manager - this is the last version of the
+ *       library that supports the Blynk legacy app.
+ *    7. Set the WiFi SSID and password in the sketch.
+ *    8. Set the Blynk server address and auth token in the sketch.
+ *    9. Upload the sketch.
  *
  *  The Blynk layout can be customized with widgets using these virtual pin mappings:
       V0 - Keypad 0 ... V9 - Keypad 9
@@ -57,6 +58,7 @@
       V61 - Zone 1 ... V124 - Zone 64
  *
  *  Release notes:
+ *    1.5 - Updated instructions for Blynk legacy usage
  *    1.4 - Added DSC Classic series support
  *    1.3 - Display alarm memory, programming zone lights, and event buffer
  *          Add PGM outputs 1-14 status

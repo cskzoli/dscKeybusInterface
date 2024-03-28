@@ -247,12 +247,10 @@ The included examples demonstrate how to use the library and can be used as-is o
   * Verizon: 5558675309@vtext.com
   * AT&T: 5558675309@txt.att.net
 
-* **VirtualKeypad-Blynk** (esp8266/esp32): Provides a virtual keypad interface for the free [Blynk legacy](https://www.blynk.io) app on iOS and Android, including viewing alarm memory, programming zone lights, and the event buffer.  The newer generation Blynk app is not currently supported.  Scan one of the following QR codes from within the Blynk app for an example keypad layout:
+* **VirtualKeypad-Blynk** (esp8266/esp32): Provides a virtual keypad interface for the free [Blynk legacy app](https://blynk.io/blog/what-will-happen-to-the-legacy-blynk-platform) on iOS and Android, including viewing alarm memory, programming zone lights, and the event buffer.  This uses a [local Blynk server](https://github.com/Peterkn2001/blynk-server) and does not support the newer Blynk IoT app.  Scan one of the following QR codes from within the Blynk legacy app for an example keypad layout:
   - [Virtual keypad with 16 zones](https://user-images.githubusercontent.com/12835671/103719316-5f6f1d80-4f8e-11eb-8a7c-4bd7bfe3cd8a.png)
   - [Virtual keypad with 32 zones](https://user-images.githubusercontent.com/12835671/103719459-af4de480-4f8e-11eb-8e4a-7172961e2d29.png)
   - [Virtual keypad with 8 zones and event log](https://user-images.githubusercontent.com/12835671/103719518-cc82b300-4f8e-11eb-8b2a-97299e7be3a2.png)
-
-  Note: Installing [Blynk as a local server](https://github.com/Peterkn2001/blynk-server) is recommended to keep control of the security system internal to your network.
 
 * **VirtualKeypad-Web** (esp8266/esp32): Provides a virtual keypad web interface, using the esp8266/esp32 itself as a standalone web server, including viewing alarm memory, programming zone lights, and the event buffer.  Thanks to [Elektrik1](https://github.com/Elektrik1) for contributing this example!
 
