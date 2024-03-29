@@ -33,7 +33,7 @@
  *
  *  The Blynk layout can be customized with widgets using these virtual pin mappings:
       V0 - Keypad 0 ... V9 - Keypad 9
-      V10 - Keypad
+      V10 - Keypad *
       V11 - Keypad #
       V12 - Keypad stay
       V13 - Keypad away
