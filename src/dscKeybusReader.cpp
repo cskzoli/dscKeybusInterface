@@ -59,11 +59,18 @@ void dscKeybusReaderInterface::begin(Stream &_stream) {
 
   // esp32 timer1 calls dscDataInterrupt() from dscClockInterrupt()
   #elif defined(ESP32)
+  #if ESP_IDF_VERSION_MAJOR >= 5
+  timer1 = timerBegin(1000000);
+  timerStop(timer1);
+  timerAttachInterrupt(timer1, &dscDataInterrupt);
+  timerAlarm(timer1, 250, true, 0);
+  #elif
   timer1 = timerBegin(1, 80, true);
   timerStop(timer1);
   timerAttachInterrupt(timer1, &dscDataInterrupt, true);
   timerAlarmWrite(timer1, 250, true);
   timerAlarmEnable(timer1);
+  #endif
   #endif
 
   // Generates an interrupt when the Keybus clock rises or falls - requires a hardware interrupt pin on Arduino/AVR
@@ -84,7 +91,9 @@ void dscKeybusReaderInterface::stop() {
 
   // Disables esp32 timer1
   #elif defined(ESP32)
+  #if ESP_IDF_VERSION_MAJOR < 5
   timerAlarmDisable(timer1);
+  #endif
   timerEnd(timer1);
   #endif
 

@@ -62,11 +62,18 @@ void dscKeypadInterface::begin(Stream &_stream) {
 
   // esp32 timer1 calls dscClockInterrupt()
   #elif defined(ESP32)
+  #if ESP_IDF_VERSION_MAJOR >= 5
+  timer1 = timerBegin(1000000);
+  timerStop(timer1);
+  timerAttachInterrupt(timer1, &dscClockInterrupt);
+  timerAlarm(timer1, 500, true, 0);
+  #elif
   timer1 = timerBegin(1, 80, true);
   timerStop(timer1);
   timerAttachInterrupt(timer1, &dscClockInterrupt, true);
   timerAlarmWrite(timer1, 500, true);
   timerAlarmEnable(timer1);
+  #endif
   #endif
 
   intervalStart = millis();
